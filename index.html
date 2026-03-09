@@ -20,12 +20,12 @@
   --green: #22c55e;
   --green-glow: rgba(34,197,94,0.08);
   --white: #ffffff;
-  --gray-100: #f1f5f9;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
+  --gray-100: #f3f6fa;
+  --gray-300: #d1d9e4;
+  --gray-400: #9fb0c4;
+  --gray-500: #7089a3;
   --gray-600: #475569;
-  --text: #e2e8f0;
+  --text: #e8ecf2;
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Instrument Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -254,6 +254,25 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 /* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(30px);transition:all 0.6s cubic-bezier(0.22,1,0.36,1)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* TAB BAR */
+.tab-bar{position:sticky;top:56px;z-index:99;background:var(--navy-mid);border-bottom:1px solid rgba(255,255,255,0.06)}
+.tab-bar-inner{max-width:1200px;margin:0 auto;display:flex;position:relative;padding:0 24px}
+.tab-btn{flex:1;padding:18px 12px;background:none;border:none;font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--gray-400);cursor:pointer;transition:color 0.25s;text-align:center;position:relative}
+.tab-btn:hover{color:var(--gray-100)}
+.tab-btn.active{color:var(--orange)}
+.tab-indicator{position:absolute;bottom:0;height:3px;background:var(--orange);border-radius:3px 3px 0 0;transition:left 0.35s cubic-bezier(0.22,1,0.36,1),width 0.35s cubic-bezier(0.22,1,0.36,1)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:tabFadeIn 0.4s ease}
+@keyframes tabFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .tab-bar{top:56px}
+  .tab-btn{font-size:13px;padding:14px 8px}
+}
+@media(max-width:600px){
+  .tab-btn{font-size:12px;padding:12px 6px}
+}
 </style>
 </head>
 <body>
@@ -263,11 +282,10 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
   <div class="nav-inner">
     <a href="#" class="nav-logo"><span class="bolt">&#9889;</span> TradeResponse</a>
     <div class="nav-links">
-      <a href="#problem">The Problem</a>
-      <a href="#solution">Solution</a>
-      <a href="#included">What's Included</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#signup" class="nav-cta">Book a Free Strategy Call &#8594;</a>
+      <a href="#" data-tab="0">Why TradeResponse</a>
+      <a href="#" data-tab="1">How It Works</a>
+      <a href="#" data-tab="2">Pricing</a>
+      <a href="#" data-tab="2" class="nav-cta">Book a Free Strategy Call &#8594;</a>
     </div>
   </div>
 </nav>
@@ -279,8 +297,8 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
     <h1>Your Phone Is Ringing.<br>Nobody's Answering.<br>That's Costing You <span class="highlight">$50K+ a Year.</span></h1>
     <p class="hero-sub">We install an AI-powered revenue recovery system that answers every call, books jobs automatically, chases every quote, and makes sure you never lose another customer to the competitor who just picked up faster.</p>
     <div class="hero-actions">
-      <a href="#signup" class="btn-primary">Book a Free Strategy Call &#8594;</a>
-      <a href="#problem" class="btn-secondary">See What You're Losing &#8595;</a>
+      <a href="#" data-tab="2" data-scroll="signup" class="btn-primary">Book a Free Strategy Call &#8594;</a>
+      <a href="#" data-tab="0" class="btn-secondary">See What You're Losing &#8595;</a>
     </div>
     <div class="loss-counter">
       <div class="loss-counter-label">&#9888; Estimated Revenue Lost Since You Opened This Page</div>
@@ -311,6 +329,19 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
     </div>
   </div>
 </div>
+
+<!-- TAB BAR -->
+<div class="tab-bar" id="tabBar">
+  <div class="tab-bar-inner">
+    <button class="tab-btn active" data-tab="0">Why TradeResponse</button>
+    <button class="tab-btn" data-tab="1">How It Works</button>
+    <button class="tab-btn" data-tab="2">Pricing &amp; Signup</button>
+    <div class="tab-indicator" id="tabIndicator"></div>
+  </div>
+</div>
+
+<!-- TAB PANEL 0: Why TradeResponse -->
+<div class="tab-panel active" data-panel="0">
 
 <!-- PAIN -->
 <section class="pain" id="problem">
@@ -390,39 +421,6 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="container">
-    <div class="how-header fade-in">
-      <div class="section-label">How It Works</div>
-      <h2>Live in 14 Days. No Tech Skills Required.</h2>
-      <p>From handshake to answered calls — two weeks. You don't install anything or change how you work.</p>
-    </div>
-    <div class="how-steps">
-      <div class="how-step fade-in">
-        <div class="step-circle">1</div>
-        <h3>We Learn Your Business</h3>
-        <p>1-hour call to learn your services, pricing, service area, and scheduling tools. Then we go build.</p>
-      </div>
-      <div class="how-step fade-in">
-        <div class="step-circle">2</div>
-        <h3>We Build &amp; Test</h3>
-        <p>We configure everything, train the AI on your business, and run test calls until it's perfect.</p>
-      </div>
-      <div class="how-step fade-in">
-        <div class="step-circle">3</div>
-        <h3>You Go Live</h3>
-        <p>Flip the switch. Calls start getting answered that same day. You get notified for every lead.</p>
-      </div>
-      <div class="how-step fade-in">
-        <div class="step-circle">4</div>
-        <h3>We Optimize Monthly</h3>
-        <p>We watch the data, tweak scripts, layer on quote follow-ups, reviews, and seasonal campaigns.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ROI -->
 <section class="roi" id="roi">
   <div class="container">
@@ -454,6 +452,44 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
       <div>
         <h4>30-Day Performance Guarantee</h4>
         <p>If the system doesn't book at least 10 new jobs in 30 days, you get your setup fee back. No questions asked. We eat the risk because the math always works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end tab-panel 0 -->
+
+<!-- TAB PANEL 1: How It Works -->
+<div class="tab-panel" data-panel="1">
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="how-header fade-in">
+      <div class="section-label">How It Works</div>
+      <h2>Live in 14 Days. No Tech Skills Required.</h2>
+      <p>From handshake to answered calls — two weeks. You don't install anything or change how you work.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-in">
+        <div class="step-circle">1</div>
+        <h3>We Learn Your Business</h3>
+        <p>1-hour call to learn your services, pricing, service area, and scheduling tools. Then we go build.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="step-circle">2</div>
+        <h3>We Build &amp; Test</h3>
+        <p>We configure everything, train the AI on your business, and run test calls until it's perfect.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="step-circle">3</div>
+        <h3>You Go Live</h3>
+        <p>Flip the switch. Calls start getting answered that same day. You get notified for every lead.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="step-circle">4</div>
+        <h3>We Optimize Monthly</h3>
+        <p>We watch the data, tweak scripts, layer on quote follow-ups, reviews, and seasonal campaigns.</p>
       </div>
     </div>
   </div>
@@ -531,6 +567,11 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
     </div>
   </div>
 </section>
+
+</div><!-- end tab-panel 1 -->
+
+<!-- TAB PANEL 2: Pricing & Signup -->
+<div class="tab-panel" data-panel="2">
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
@@ -656,6 +697,8 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
   </div>
 </section>
 
+</div><!-- end tab-panel 2 -->
+
 <!-- PRIVACY POLICY (inline for crawler compliance) -->
 <section id="privacy" style="padding:80px 0;background:var(--navy-mid);border-top:1px solid rgba(255,255,255,0.05)">
   <div class="container" style="max-width:800px">
@@ -776,15 +819,86 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 })();
 
 // SCROLL ANIMATIONS
-var obs = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry, i){
-    if(entry.isIntersecting){
-      setTimeout(function(){ entry.target.classList.add('visible'); }, i * 80);
-      obs.unobserve(entry.target);
-    }
-  });
-}, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+function createObserver() {
+  return new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if(entry.isIntersecting){
+        setTimeout(function(){ entry.target.classList.add('visible'); }, i * 80);
+      }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+}
+var obs = createObserver();
 document.querySelectorAll('.fade-in').forEach(function(el){ obs.observe(el); });
+
+// TAB SWITCHING
+(function(){
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  var indicator = document.getElementById('tabIndicator');
+
+  function positionIndicator(btn) {
+    if (!btn || !indicator) return;
+    indicator.style.left = btn.offsetLeft + 'px';
+    indicator.style.width = btn.offsetWidth + 'px';
+  }
+
+  function switchTab(index, scrollTarget) {
+    tabBtns.forEach(function(b){ b.classList.remove('active'); });
+    panels.forEach(function(p){ p.classList.remove('active'); });
+    tabBtns[index].classList.add('active');
+    panels[index].classList.add('active');
+    positionIndicator(tabBtns[index]);
+
+    // Re-trigger fade-in animations for newly visible panel
+    panels[index].querySelectorAll('.fade-in').forEach(function(el){
+      el.classList.remove('visible');
+      obs.observe(el);
+    });
+
+    // Scroll to tab bar or specific target
+    var tabBar = document.getElementById('tabBar');
+    if (scrollTarget) {
+      var target = document.getElementById(scrollTarget);
+      if (target) {
+        setTimeout(function(){ target.scrollIntoView({behavior:'smooth'}); }, 50);
+        return;
+      }
+    }
+    tabBar.scrollIntoView({behavior:'smooth'});
+  }
+
+  // Tab button clicks
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      switchTab(parseInt(btn.dataset.tab));
+    });
+  });
+
+  // Nav links and hero CTAs with data-tab
+  document.querySelectorAll('[data-tab]').forEach(function(el){
+    if (el.classList.contains('tab-btn')) return;
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      switchTab(parseInt(el.dataset.tab), el.dataset.scroll);
+    });
+  });
+
+  // Position indicator on load
+  positionIndicator(document.querySelector('.tab-btn.active'));
+
+  // Reposition on resize
+  window.addEventListener('resize', function(){
+    positionIndicator(document.querySelector('.tab-btn.active'));
+  });
+
+  // Deep linking
+  var hash = window.location.hash.replace('#','');
+  var hashMap = {problem:0, solution:0, roi:0, how:1, included:1, pricing:2, signup:2};
+  if (hash && hashMap[hash] !== undefined) {
+    switchTab(hashMap[hash], hash);
+  }
+})();
 
 // FORM SUBMIT
 function handleSubmit(e){
