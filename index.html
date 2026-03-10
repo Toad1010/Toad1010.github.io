@@ -5,6 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TradeResponse | Stop Losing $50K+ to Missed Calls — Denver HVAC AI Automation</title>
 <meta name="description" content="Denver HVAC companies lose $50K+ a year to unanswered phones. TradeResponse fixes that with AI-powered call answering, lead recovery, and automation.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logo-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="TradeResponse | Stop Losing $50K+ to Missed Calls">
+<meta property="og:description" content="AI-powered call answering and lead recovery for Denver HVAC contractors. Never lose another job to a missed call.">
+<meta property="og:image" content="https://toad1010.github.io/logo.png">
+<meta property="og:url" content="https://toad1010.github.io/">
+<meta property="og:site_name" content="TradeResponse">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TradeResponse | Stop Losing $50K+ to Missed Calls">
+<meta name="twitter:description" content="AI-powered call answering and lead recovery for Denver HVAC contractors. Never lose another job to a missed call.">
+<meta name="twitter:image" content="https://toad1010.github.io/logo.png">
+
+<!-- Google Tag Manager (replace GTM-XXXXXXX with your container ID) -->
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script> -->
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "TradeResponse",
+  "description": "AI-powered call answering and lead recovery for home service contractors in Denver.",
+  "url": "https://toad1010.github.io/",
+  "logo": "https://toad1010.github.io/logo.png",
+  "image": "https://toad1010.github.io/logo.png",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Denver Metropolitan Area, Colorado"
+  },
+  "serviceType": ["AI Call Answering", "Lead Recovery", "Home Service Automation"],
+  "priceRange": "$$"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -49,6 +89,18 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 .nav-links a:hover{color:var(--white)}
 .nav-cta{background:var(--orange);color:var(--navy);padding:10px 24px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;transition:all 0.2s;letter-spacing:0.02em}
 .nav-cta:hover{background:var(--orange-hot);transform:translateY(-1px)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:900px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(10,15,28,0.98);backdrop-filter:blur(20px);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(249,115,22,0.1)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0;font-size:16px}
+  .nav-cta{text-align:center;margin-top:8px}
+}
 
 /* HERO */
 .hero{padding:160px 0 100px;position:relative;overflow:hidden}
@@ -281,7 +333,8 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo"><img src="logo-icon.webp" alt="TradeResponse" class="nav-logo-img"> TradeResponse</a>
-    <div class="nav-links">
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
       <a href="#" data-tab="0">Why TradeResponse</a>
       <a href="#" data-tab="1">How It Works</a>
       <a href="#" data-tab="2">Pricing</a>
@@ -297,7 +350,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
     <h1>Your Phone Is Ringing.<br>Nobody's Answering.<br>That's Costing You <span class="highlight">$50K+ a Year.</span></h1>
     <p class="hero-sub">We install an AI-powered revenue recovery system that answers every call, books jobs automatically, chases every quote, and makes sure you never lose another customer to the competitor who just picked up faster.</p>
     <div class="hero-actions">
-      <a href="https://api.leadconnectorhq.com/widget/booking/vUIKLAY8gyFvAfFBjGjf" target="_blank" rel="noopener" class="btn-primary">Book a Demo &#8594;</a>
+      <a href="#" data-tab="2" data-scroll="signup" class="btn-primary">Book a Demo &#8594;</a>
       <a href="#" data-tab="2" data-scroll="signup" class="btn-secondary">See Pricing &#8595;</a>
     </div>
     <div class="loss-counter">
@@ -549,7 +602,8 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
   <div class="container">
     <div class="voices-header fade-in">
       <div class="section-label">Sound Familiar?</div>
-      <h2>Real Words From Denver Contractors</h2>
+      <h2>What Denver Contractors Are Saying</h2>
+      <p style="font-size:14px;color:var(--gray-500);margin-top:8px;font-style:italic;">*These quotes reflect common frustrations we hear from contractors — real customer reviews coming soon.</p>
     </div>
     <div class="voice-grid">
       <div class="voice-card fade-in">
@@ -564,6 +618,12 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-
         <div class="quote">"We've failed three inspections this month just because the tech forgot the CO2 sticker. That's three return trips for nothing."</div>
         <div class="attr"><strong>Mid-Size Contractor</strong> &#183; Front Range</div>
       </div>
+    </div>
+    <!-- Feedback CTA -->
+    <div class="fade-in" style="margin-top:40px;text-align:center;padding:32px;background:var(--surface);border:1px solid rgba(249,115,22,0.15);border-radius:12px;max-width:600px;margin-left:auto;margin-right:auto;">
+      <p style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;">Already a TradeResponse Customer?</p>
+      <p style="font-size:14px;color:var(--gray-400);margin-bottom:20px;line-height:1.6;">We'd love to hear about your experience. Your feedback helps us improve and helps other contractors make the right choice.</p>
+      <a href="GOOGLE_FORM_URL_HERE" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:var(--navy);padding:14px 28px;border-radius:8px;font-family:var(--font-display);font-size:15px;font-weight:700;text-decoration:none;transition:all 0.25s;">Share Your Experience &#8594;</a>
     </div>
   </div>
 </section>
@@ -900,17 +960,89 @@ document.querySelectorAll('.fade-in').forEach(function(el){ obs.observe(el); });
   }
 })();
 
+// UTM CAPTURE
+function getUtmParams() {
+  var params = new URLSearchParams(window.location.search);
+  var utms = {};
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k) {
+    if (params.get(k)) utms[k] = params.get(k);
+  });
+  return utms;
+}
+
 // FORM SUBMIT
 function handleSubmit(e){
   e.preventDefault();
   var f = e.target;
+  var btn = f.querySelector('button[type="submit"]');
   var data = Object.fromEntries(new FormData(f));
-  console.log('Lead:', data);
-  // Redirect to GHL calendar booking page
+
+  // Attach UTM params
+  var utms = getUtmParams();
+  Object.assign(data, utms);
+  data.page_url = window.location.href;
+
+  // Loading state
+  var originalText = btn.innerHTML;
+  btn.innerHTML = 'Submitting&hellip;';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  // Push to dataLayer for GTM/GA4 tracking
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'form_submission',
+    form_name: data.name,
+    form_company: data.company,
+    form_trade: data.trade,
+    form_size: data.size
+  });
+
+  // POST to GHL webhook (replace URL when ready)
+  var webhookUrl = 'GHL_WEBHOOK_URL_HERE';
+  if (webhookUrl !== 'GHL_WEBHOOK_URL_HERE') {
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).catch(function(err) {
+      console.warn('Webhook failed:', err);
+    }).finally(function() {
+      openCalendarAndShowSuccess(f, btn, originalText);
+    });
+  } else {
+    // No webhook configured yet — still capture locally and proceed
+    console.log('Lead (webhook not configured):', data);
+    openCalendarAndShowSuccess(f, btn, originalText);
+  }
+}
+
+function openCalendarAndShowSuccess(f, btn, originalText) {
+  btn.innerHTML = originalText;
+  btn.disabled = false;
+  btn.style.opacity = '1';
   window.open('https://api.leadconnectorhq.com/widget/booking/vUIKLAY8gyFvAfFBjGjf', '_blank');
   f.style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
 }
+
+// HAMBURGER MENU
+(function(){
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('navLinks');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function(){
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+})();
 
 // NAV SCROLL EFFECT
 window.addEventListener('scroll', function(){
