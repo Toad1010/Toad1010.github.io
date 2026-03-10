@@ -904,9 +904,10 @@ document.querySelectorAll('.fade-in').forEach(function(el){ obs.observe(el); });
 function handleSubmit(e){
   e.preventDefault();
   var f = e.target;
-  // In production: POST to GHL webhook URL
-  // fetch('YOUR_GHL_WEBHOOK_URL', {method:'POST', body:new FormData(f)});
-  console.log('Lead:', Object.fromEntries(new FormData(f)));
+  var data = Object.fromEntries(new FormData(f));
+  console.log('Lead:', data);
+  // Redirect to GHL calendar booking page
+  window.open('https://api.leadconnectorhq.com/widget/booking/vUIKLAY8gyFvAfFBjGjf', '_blank');
   f.style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
 }
